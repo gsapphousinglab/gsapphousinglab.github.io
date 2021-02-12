@@ -19,102 +19,13 @@
     
 <body id="top">
 <!-- Main -->
- 
-<!-- Leaflet style -->
-    <style>
-      #map { height: 800px; z-index: -1}
-
-      /*another-popop style*/
-      .another-popup .leaflet-popup-content-wrapper {
-        background: #FFFFFF;
-        color: #14171A;
-        font-family: 'Helvetica Neue';
-        font-size: 13px;
-        line-height: 24px;
-        border-radius: 0px;
-      }
-      .another-popup .leaflet-popup-content-wrapper a {
-        color: rgba(200, 200, 200, 0.1);
-      }
-      .another-popup .leaflet-popup-tip-container {
-        width: 50px;
-        height: 15px;
-      }
-      .another-popup .leaflet-popup-tip {
-        background: transparent;
-        border: none;
-        box-shadow: none;
-      }
-    </style>
             
 <body onLoad="javascript:init();">
 
 <div id="main" style="margin-top:-3em">   
     <div class="inner">
         
-        <!-- Leaflet Map -->
-        <div class="inner2">
-        <div id="map"></div>
-            <script language="javascript">
-               function init() {
-                  var map = L.map('map').setView([40.796172, -73.953012], 12);
-
-                  //CartoDB layer names: light_all / dark_all / light_nonames / dark_nonames
-                  var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-                  });
-
-                  layer.addTo(map);
-                  map.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' text. Attribution overload
-
-                  var LineStyle = {
-                    "color": "#14171A",
-                    "weight": 2.5,
-                    "opacity": 0.65
-                  };
-
-                  var PointStyle = {
-                    "color": "#000000",
-                    "weight": 0.25,
-                    "opacity": 0.5,
-                    "fillOpacity": 10
-                  };
-
-                  //Broadway
-                  $.getJSON("tweets-on-broadway/broadway.geojson", function(data){
-                    //add GeoJson layer to the map once the file is loaded
-                    L.geoJSON(data, {
-                      style: LineStyle
-                    }).addTo(map);
-                  });
-                  
-                  //Tweets_with_Marker                   
-                  var popupOptions =
-                  {
-                    'maxWidth': '150',
-                    'className' : 'another-popup' // classname for another popup
-                  };
-
-                  $.getJSON('tweets-on-broadway/tweets.geojson', function (data) {
-                    var ratIcon = L.icon({
-                      iconUrl: "https://img.icons8.com/color/48/000000/twitter-circled.png",
-                      iconSize: [15,15]
-                    });
-                  L.geoJson(data, {
-                    onEachFeature: function (feature, layer) {
-                        layer.bindPopup(feature.properties.text, popupOptions);  
-                    },
-                    pointToLayer: function(feature,latlng){
-                        var marker = L.marker(latlng,{icon: ratIcon});
-                        marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
-                        return marker;
-                  }
-                      }).addTo(map);
-                        });
-
-               }
-            </script>
-        </div>
+<iframe width="100%" height="520" frameborder="0" src="https://jk3472.carto.com/builder/34888712-62b1-4218-976c-622bdef6f135/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
     </div>
 </div>
