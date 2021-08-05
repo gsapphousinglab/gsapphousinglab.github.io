@@ -71,7 +71,7 @@
       <div id="CALCULATOR" class="tabcontent">
         <p class="Text" onclick="loadPage()"> The following calculator is meant to provide an estimate of potential costs incurred to develop identified plots in the map for Affordable Additional Dwelling Units.</p>
         </br>
-        <a id="calctext" href="url" style="color:#7E7E7E; padding-bottom:10pX; font-family:roboto; font-weight:light; font-size: 12px" onclick="loadPage()">DOWNLOAD FULL VERSION OF CALCULATOR</a>
+        <a id="calctext" href="url" style="color:#7E7E7E; padding-bottom:10pX; font-family:roboto; font-weight:light; font-size: 12px" onclick="openLink()">DOWNLOAD FULL VERSION OF CALCULATOR</a>
         </br>
         <iframe id="calconic calculator" src="" sandbox="allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups-to-escape-sandbox allow-popups" title="Calconic_ Calculator" name="Calconic_ Calculator" height="3400px" scrolling="no" style="width: 600px; align-self: center; border: 0; outline: none;"></iframe>
         <script>
@@ -82,6 +82,10 @@
       </div>
 
       <script>
+      function openLink() {
+        window.open("https://docs.google.com/spreadsheets/d/171RITr5QEBEQxODldeGs71sH8Y5At5si/edit?usp=sharing&ouid=109087873959422578389&rtpof=true&sd=true");
+      }
+
       function openTab(evt, tabName) {
         // Declare all variables
         var i, tabcontent, tablinks;
