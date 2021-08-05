@@ -1,44 +1,119 @@
-<!DOCTYPE HTML>
-<!--
-	Full Motion by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-    
-<head>
-    <title>FARmapping</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    
-    <link rel="stylesheet" href="assets/leaflet/leaflet.css" />
-    <script src="assets/leaflet/leaflet.js"></script>
-</head>
-    
-<body id="top">
-<!-- Main -->
-            
-<body onLoad="javascript:init();">
+<!DOCTYPE html>
 
-<div id="main" style="margin-top:-3em">   
-    <div class="inner">
-        
-<iframe width="100%" height="520" frameborder="0" src="https://jk3472.carto.com/builder/34888712-62b1-4218-976c-622bdef6f135/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+<html lang="en">
+<head>
+    <title> UntappedNYC </title>
+    <link href="assets/css/UntappedNYC.css" rel="stylesheet">
+    <link rel="icon" href="assets/css/images/HLAB icon.png" >
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <p style="justify:right"><span style="font-family:roboto; font-size: 16px"> HOUSING LAB | </span><span style="color:gray; font-family:roboto light; font-size: 12px"> GRADUATE SCHOOL OF ARCHITECTURE, PLANNING & PRESERVATION </span></p>
+    </div>
+
+    <div class="item-1">
+      <div id="cartodb-map" class="desktop-only leaflet-container leaflet-fade-anim" style="height: 100%; margin-left: 0px; position: relative;" tabindex="0">
+        <iframe width="100%" height="100%" frameborder="0" background="#EBEBEB" src="https://a-shetye.carto.com/builder/ffd7dd13-a386-4e52-abe9-a765d0ec4151/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="item-2" id="content" >
+
+
+      <div id="intro" style="width:600px">
+        <p style="color:#cc607d; margin-top:16px; margin-bottom: 5px">
+          <span style="font-family:roboto; font-weight: bold; font-size: 36px">UNTAPPED</span>
+          <span style="font-family:roboto light; font-size: 36px">NYC</span>
+          <span style="font-family:roboto light; font-size: 20px">(BETA VERSION)</span>
+          </br>
+          <p class="Text" style="font-family:roboto light; margin-top:0px; margin-bottom: 10px; font-size: 18px; color:WHITE">
+            Map exploring the potential affordable Additional Dwelling Unit neighborhoods across NYC.
+          </p>
+        </p>
+      </div>
+
+      <div class="tab" style="justify:right ; padding-top: 10px; padding-left: 5px;">
+        <button class="tablinks" onclick="openTab(event, 'introtext')" id="defaultOpen">INFO</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="tablinks" onclick="openTab(event, 'CALCULATOR');loadPage();">CALCULATOR</button>
+      </div>
+
+      <div id="introtext" class="tabcontent" style="margin-top: 30px">
+        <p class="Text">
+          Restrictive zoning is often the primary mechanism many housing advocates point to as a key reason we are in a housing crisis. While that may be the case in different municipalities and at different times, New York City is unique in that there is a surplus between what the maximum zoning will allow, and the current built environment. In many parts of Manhattan, the current zoning would allow for several more stories than are currently built.
+        </p>
+        <p class="Text">
+          Rooftop Accessory Dwelling Units take advantage of the historically underused flat roof construction of tenement buildings. As of the year 2020, over 9,500 New Law tenement buildings exist in New York City that are not built to the maximum 6-story height of a non-elevator building. There is untapped potential to add to these underbuilt tenement buildings while remaining within zoning height and setback controls.
+        </p>
+
+        <p class="infograph">
+          <span id="number">570,000,000</span>
+          <span id="unit">SQFT</span>
+        </br>
+          <span id="tag"> AREA AVAILABLE IN MANHATTAN </span>
+        </p>
+
+        <p class="infograph">
+          <span id="number">1,000,000</span>
+          <span id="unit">UNITS</span>
+        </br>
+          <SPAN id="tag">1 BEDROOM APARTMENTS</SPAN>
+        </p>
+
+      </div>
+
+      <div id="CALCULATOR" class="tabcontent">
+        <p class="Text" onclick="loadPage()"> The following calculator is meant to provide an estimate of potential costs incurred to develop identified plots in the map for Affordable Additional Dwelling Units.</p>
+        </br>
+        <iframe id="calconic calculator" src="" sandbox="allow-same-origin allow-forms allow-scripts allow-top-navigation allow-popups-to-escape-sandbox allow-popups" title="Calconic_ Calculator" name="Calconic_ Calculator" height="3400px" scrolling="no" style="width: 600px; align-self: center; border: 0; outline: none;"></iframe>
+        <script>
+        function loadPage() {
+             document.getElementById('calconic calculator').src = 'https://app.calconic.com/api/embed/calculator/60da276e0f81d60029c1f1cd';
+        }
+        </script>
+        </br>
+        <a id="calctext" href="url" style="color:#7E7E7E; padding-bottom:10pX; font-family:roboto; font-weight:light; font-size: 12px" onclick="loadPage()">DOWNLOAD FULL VERSION OF CALCULATOR</a>
+      </div>
+
+      <script>
+      function openTab(evt, tabName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace("active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      </script>
 
     </div>
-</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-    
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <div class="footer">
+        <p style="font-size: 10px"> COLLABORATORS :   IAN WACH,  JIN HONG KIM,  DANIELLE ROBERTS,  ADITI SHETYE </P>
+    </div>
+
+  </div>
 
 </body>
 </html>
