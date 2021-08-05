@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Deck Trial</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <!-- Include Deck.gl -->
+  <script src="https://unpkg.com/deck.gl@^8.3.0/dist.min.js"></script>
+  <script src="https://unpkg.com/@deck.gl/carto@^8.3.0/dist.min.js"></script>
+  <!-- Include Carto Mapbox -->
+  <script src="https://libs.cartocdn.com/mapbox-gl/v1.13.0/mapbox-gl.js"></script>
+  <link href="https://libs.cartocdn.com/mapbox-gl/v1.13.0/mapbox-gl.css" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+  <style type="text/css">
+        .layer-selector {
+          position: absolute;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          background-color: #fff;
+          width: 240px;
+          margin: 24px;
+          padding: 10 24px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          border-radius: 4px;
+        }
+        .layer-selector h3 {
+          font-size: 16px;
+          margin: 8px 0;
+        }
+        .layer-selector .layout {
+          display: table;
+          width: 100%;
+          margin-top: 8px;
+        }
+        .layer-selector .layout > * {
+          display: table-cell;
+          height: 12px;
+        }
+        .right-align {
+          text-align: right;
+        }
+      </style>
+    </head>
+
+    <body style="margin: 0; padding: 0">
+    <div id="map" style="width: 100vw; height: 100vh;"></div>
+    </body>
+
+
+    <script type="text/javascript">
+      const cartoBasemaps = {
+        VOYAGER: "https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+        POSITRON: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+        DARK_MATTER: "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json",
+      };
+
+      deck.carto.setDefaultCredentials({
+        username: "a-shetye",
+        apiKey: "jR1abm61GJ-q0CjXBTlZ4Q",
+      });
+
+      // Color breaks
+      const POLYGON_COLORS = {
+        COLOR_5: [225, 198, 196],
+        COLOR_4: [238, 145, 155],
+        COLOR_3: [204, 96, 125],
+        COLOR_2: [158, 57, 99],
+        COLOR_1: [103, 32, 68],
+      };
+
+
+      const deckgl = new deck.DeckGL({
+        container: "map",
+        // CARTO's provides three basemaps voyager, positron, dark-matter
+        mapStyle: cartoBasemaps.DARK_MATTER,
+
+        initialViewState: {
+          latitude: 40.7831,
+          longitude: -73.9712,
+          zoom: 12,
+          maxZoom: 20,
+          minZoom: 11,
+          pitch:45,
+
+        },
+        controller: {
+          scrollZoom: true
+        },
+
+        layers: [
+          new deck.carto.CartoSQLLayer({
+            data: `SELECT * FROM rooftopadditions_20210701`,
+            getFillColor: (object) => {
+            if (object.properties.availarea > 11434) {
+              return POLYGON_COLORS.COLOR_1;
+            } else if (object.properties.availarea > 4589) {
+              return POLYGON_COLORS.COLOR_2;
+            } else if (object.properties.availarea > 2618) {
+              return POLYGON_COLORS.COLOR_3;
+            } else if (object.properties.availarea > 1393) {
+              return POLYGON_COLORS.COLOR_4;
+            } else if (object.properties.availarea > 8) {
+              return POLYGON_COLORS.COLOR_5;
+            }
+          },
+            extruded: true,
+            visible: true,
+            stroked: true,
+            lineWidthMaxPixels: 0.5,
+            getLineColor: [0, 0, 0, 100],
+            pickable: true,
+
+            getElevation: (object) => object.properties.heightroof
+          }),
+
+
+          new deck.carto.CartoSQLLayer({
+            data: `SELECT * FROM rooftopadditions_20210701`,
+            getFillColor: [100, 0, 0, 80],
+            stroked: true,
+            lineWidthMaxPixels: 0.5,
+            getLineColor: [0, 0, 0, 100],
+            visible: true,
+            extruded: true,
+            offset: 10,
+
+            getElevation: (object) => object.properties.availheigh
+          }),
+
+
+          new deck.carto.CartoSQLLayer({
+            data: `SELECT * FROM rooftopadditions_summer2021_mn_bldgfootprint_mappluto`,
+            getFillColor: [72, 72, 72],
+            stroked: true,
+            lineWidthMaxPixels: 0.25,
+            visible: true,
+            getLineColor: [0, 0, 0, 100],
+            extruded: true,
+
+            getElevation: (object) => object.properties.heightroof
+          }),
+        ],
+        getTooltip: ({ object }) =>
+        object && {
+          html: `<strong>Address</strong>: ${object.properties.address}<br/>`,
+          style: {
+            backgroundColor: '#EBEBEB',
+            fontSize: '12px',
+            fontFamily: 'Roboto',
+          }
+        },
+
+
+      });
+
+        </script>
+
+  </html>
