@@ -1,0 +1,43 @@
+.layer-selector {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  width: 240px;
+  margin: 24px;
+  padding: 10 24px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 4px;
+}
+.layer-selector h3 {
+  font-size: 16px;
+  margin: 8px 0;
+}
+.layer-selector .layout {
+  display: table;
+  width: 100%;
+  margin-top: 8px;
+}
+.layer-selector .layout > * {
+  display: table-cell;
+  height: 12px;
+}
+.right-align {
+  text-align: right;
+}
+
+.Tooltip {
+  background-color: #ffffff;
+  font-family: 'Roboto:wght300', sans-serif;
+  width: 100px;
+  height: 100px;
+  opacity: 90%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 30% calc(70% / 3) calc(70% / 3) calc(70% / 3);
+}
+.Tooltip #header {
+  grid-column-start: span 2;
+  background-color: black;
+}
