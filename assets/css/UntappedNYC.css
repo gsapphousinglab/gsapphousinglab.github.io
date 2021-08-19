@@ -68,6 +68,7 @@ a:hover {
 
 
 .item-1 {
+  overflow: hidden;
 }
 
 .item-2 {
