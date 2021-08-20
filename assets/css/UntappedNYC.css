@@ -171,6 +171,14 @@ a:hover {
   color:#9e9e9e;
 }
 
+.ol {
+  font-family:'Roboto:wght100', sans-serif;
+  font-size: 14px;
+  margin-top:18px;
+  margin-bottom:18px;
+  color:#9e9e9e;
+}
+
 .infograph {
   text-align:center;
   margin-top:60px;
