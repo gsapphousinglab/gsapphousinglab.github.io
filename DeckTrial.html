@@ -105,6 +105,18 @@
 
             getElevation: (object) => object.properties.heightroof/3.3,
           }),
+          
+            new deck.carto.CartoSQLLayer({
+            data: `SELECT * FROM mn_historicdistricts`,
+            id: 3,
+            getFillColor: [48, 48, 48],
+            stroked: true,
+            lineWidthMaxPixels: 0.25,
+            visible: true,
+            getLineColor: [0, 0, 0, 100],
+            extruded: false,
+          }),
+          
         ],
 
 
